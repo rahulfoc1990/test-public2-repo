@@ -22,7 +22,12 @@ jobs:
       - name: create a new branch 
         run: | 
           git config --global user.name "edwin-focaloid"
-          git config --global user.email "oat-github-bot@taotesting.com"        
+          git config --global user.email "edwin.sany@focaloid.com"  
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa  
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_rsa    
+          git clone git@github.com:oat-sa/test-private-repo.git
+          cd test-private-repo
           git branch 
           git checkout -b public-version
           git status 
