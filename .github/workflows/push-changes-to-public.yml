@@ -25,3 +25,13 @@ jobs:
           git checkout -b public-version
           git status 
           ls -al 
+
+      - name: remove secret files 
+          git branch 
+          git rm -r infra
+          git rm -r docker 
+
+      - name: push to public repository 
+          git remote add public git@github.com:oat-sa/test-public1-repo.git
+          git push -u public public-version:develop
+  
