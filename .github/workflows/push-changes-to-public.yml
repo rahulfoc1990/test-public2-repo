@@ -27,11 +27,13 @@ jobs:
           ls -al 
 
       - name: remove secret files 
+        run: |
           git branch 
           git rm -r infra
           git rm -r docker 
 
       - name: push to public repository 
+        run: |
           git remote add public git@github.com:oat-sa/test-public1-repo.git
           git push -u public public-version:develop
   
