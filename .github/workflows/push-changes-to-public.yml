@@ -31,9 +31,14 @@ jobs:
           git branch 
           git rm -r infra
           git rm -r docker 
+          git add * 
+          git commit -m "fix: testing"
 
       - name: push to public repository 
         run: |
+          git config --global user.name "oat-github-bot"
+          git config --global user.email "oat-github-bot@taotesting.com"
           git remote add public git@github.com:oat-sa/test-public1-repo.git
+          git remote -v
           git push -u public public-version:develop
   
