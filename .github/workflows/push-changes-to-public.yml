@@ -23,6 +23,7 @@ jobs:
         run: | 
           git config --global user.name "edwin-focaloid"
           git config --global user.email "edwin.sany@focaloid.com"  
+          mkdir /home/runner/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa  
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_rsa    
