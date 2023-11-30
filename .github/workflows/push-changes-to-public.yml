@@ -29,6 +29,9 @@ jobs:
 
       - name: create a new branch 
         run: | 
+          git  config --global user.email "edwin.sany@taotesting.com"
+          git config --global user.name "Edwin Focaloid"
+
           git branch 
           git checkout -b public-version
           git status 
@@ -44,6 +47,7 @@ jobs:
 
       - name: push to public repository 
         run: |
+          
           git remote add public git@github.com:oat-sa/test-public1-repo.git
           git remote -v
           git push -u public public-version:develop
