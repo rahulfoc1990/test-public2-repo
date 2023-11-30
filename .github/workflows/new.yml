@@ -25,6 +25,8 @@ jobs:
       - name: Pull changes from private repository
         run: |
           git pull origin main
+          git  config --global user.email "edwin.sany@taotesting.com"
+          git config --global user.name "Edwin Focaloid"          
           git checkout -b public-version
           git status 
           ls -al 
@@ -32,6 +34,7 @@ jobs:
           git rm -r infra
           git rm -r docker 
           git rm -r remove.txt
+          ls -al
           git add * 
           git commit -m "fix: testing"                       
 
