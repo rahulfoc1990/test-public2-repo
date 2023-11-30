@@ -14,20 +14,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+
+      - name: Set up SSH agent
+        uses: actions/setup-ssh@v3
+        with:
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+
+      - name: Clone remote repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
+          repository: https://github.com/oat-sa/test-private-repo.git
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}      
 
       - name: create a new branch 
         run: | 
-          git config --global user.name "edwin-focaloid"
-          git config --global user.email "edwin.sany@focaloid.com"  
-          mkdir /home/runner/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa  
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/id_rsa    
-          git clone git@github.com:oat-sa/test-private-repo.git
           cd test-private-repo
           git branch 
           git checkout -b public-version
