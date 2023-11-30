@@ -20,8 +20,7 @@ jobs:
       - name: Set up SSH agent
         uses: webfactory/ssh-agent@v0.8.0
         with:
-          github-token: ${{ secrets.PRIVATE_ACCESS_TOKEN }}
-          ssh-key-secret: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Pull changes from private repository
         run: git pull origin master
