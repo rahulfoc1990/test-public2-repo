@@ -1,0 +1,27 @@
+name: release-public-version
+on:
+
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+
+jobs: 
+  build: 
+    name: setup public repository 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+
+      - name: create a new branch 
+        run: | 
+          git branch 
+          git checkout -b public-version
+          git status 
+          ls -al 
