@@ -21,7 +21,7 @@ jobs:
 
       - name: create a new branch 
         run: | 
-          git config --global user.name "oat-github-bot"
+          git config --global user.name "edwin-focaloid"
           git config --global user.email "oat-github-bot@taotesting.com"        
           git branch 
           git checkout -b public-version
