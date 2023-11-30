@@ -42,6 +42,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PRIVATE_ACCESS_TOKEN }}
-          repository: oat-sa/test-public1-repo
+          repository: git@github.com:oat-sa/test-public1-repo.git
           branch: develop
           force: true
