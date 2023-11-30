@@ -18,7 +18,7 @@ jobs:
       - name: Set up SSH agent
         uses: webfactory/ssh-agent@v0.8.0
         with:
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
 
       - name: Clone remote repository
