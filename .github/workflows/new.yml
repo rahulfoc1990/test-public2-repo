@@ -1,0 +1,35 @@
+name: Sync Private Repository to Public Repository
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout private repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          github-token: ${{ secrets.PRIVATE_ACCESS_TOKEN }}
+          ssh-key-secret: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Pull changes from private repository
+        run: git pull origin master
+
+      - name: Push changes to public repository
+        uses: ad-m/github-push-action@v2.2.0
+        with:
+          github_token: ${{ secrets.PRIVATE_ACCESS_TOKEN }}
+          destination: https://github.com/oat-sa/test-public1-repo.git
+          branch: develop
+          force: true
