@@ -23,7 +23,17 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Pull changes from private repository
-        run: git pull origin master
+        run: |
+          git pull origin main
+          git checkout -b public-version
+          git status 
+          ls -al 
+          git branch 
+          git rm -r infra
+          git rm -r docker 
+          git rm -r remove.txt
+          git add * 
+          git commit -m "fix: testing"                       
 
       - name: Push changes to public repository
         uses: ad-m/github-push-action@master
