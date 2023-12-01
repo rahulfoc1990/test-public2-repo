@@ -31,6 +31,7 @@ jobs:
         run: | 
           git  config --global user.email "edwin.sany@taotesting.com"
           git config --global user.name "Edwin Focaloid"
+          git config pull.ff only
 
           git branch 
           git checkout -b public-version
