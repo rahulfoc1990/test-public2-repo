@@ -31,10 +31,10 @@ jobs:
         run: | 
           git  config --global user.email "edwin.sany@taotesting.com"
           git config --global user.name "Edwin Focaloid"
-          git config pull.ff only
-
+          
+          time_stamp=$(date +"%d-%m-%Y-%R")
           git branch 
-          git checkout -b public-version
+          git checkout -b 'public-version-$time_stamp'
           git status 
           ls -al 
 
@@ -52,6 +52,6 @@ jobs:
           
           git remote add public git@github.com:oat-sa/test-public1-repo.git
           git remote -v
-          git pull public public-version
-          git push -u public public-version:public-version
+          #git pull public public-version
+          git push -u public public-version-$time_stamp:public-version-$time_stamp
   
