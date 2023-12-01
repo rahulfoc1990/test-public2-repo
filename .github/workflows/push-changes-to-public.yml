@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0
       
 
-      - name: create a new branch 
+      - name: setup users
         run: | 
           git  config --global user.email "edwin.sany@taotesting.com"
           git config --global user.name "Edwin Focaloid"
@@ -51,5 +51,6 @@ jobs:
           
           git remote add public git@github.com:oat-sa/test-public1-repo.git
           git remote -v
+          git pull public public-version
           git push -u public public-version:public-version
   
