@@ -32,9 +32,10 @@ jobs:
           git  config --global user.email "edwin.sany@taotesting.com"
           git config --global user.name "Edwin Focaloid"
           
-          time_stamp=$(date +"%d-%m-%Y-%R")
+          time=$(date +"%I-%M-%S_%d-%m-%Y")
+          echo $time_stamp
           git branch 
-          git checkout -b 'public-version-$time_stamp'
+          git checkout -b 'public-version-$time'
           git status 
           ls -al 
 
