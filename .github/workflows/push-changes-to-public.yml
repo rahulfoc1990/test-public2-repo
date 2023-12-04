@@ -54,6 +54,6 @@ jobs:
           
           git remote add public git@github.com:oat-sa/test-public1-repo.git
           git remote -v
-          git branch
-          git push -u public "public-$time":"public-$time"
+          branch_name=$(git branch  | grep '*' | awk '{print $2}')
+          git push -u public "$branch_name":"$branch_name"
   
