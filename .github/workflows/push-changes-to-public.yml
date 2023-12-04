@@ -54,6 +54,5 @@ jobs:
           
           git remote add public git@github.com:oat-sa/test-public1-repo.git
           git remote -v
-          #git pull public public-version
-          git push -u public public-version-$time_stamp:public-version-$time_stamp
+          git push -u public "public-version-$time":"public-version-$time"
   
