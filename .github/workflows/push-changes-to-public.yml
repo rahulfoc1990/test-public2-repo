@@ -33,16 +33,13 @@ jobs:
           git config --global user.name "Edwin Focaloid"
           
           time=$(date +"%I-%M-%S_%d-%m-%Y")
-          echo $time
-          git branch 
-          git checkout -b "public-version-$time"
+          git checkout -b "public-$time"
           git branch
           git status 
           ls -al 
 
       - name: remove secret files 
         run: |
-          git branch 
           git rm -r infra
           git rm -r docker 
           git rm -r remove.txt
