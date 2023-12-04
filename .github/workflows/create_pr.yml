@@ -1,0 +1,39 @@
+name: Create PR on New Branch
+
+on:
+  push:
+    branches:
+      - 'public-*'  # Adjust the branch name pattern as needed
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.AUTOMATED_USER_TOKEN }}    
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create 'releases' label
+        run: gh api repos/:owner/:repo/labels --field name=releases --field color=ff0000 --field description="For releases" --method POST
+
+
+      - name: Create Pull Request
+        if: startsWith(github.ref, 'refs/heads/public-') && github.event_name == 'push'
+        id: create-pr        
+        run: |
+          # Get the branch name
+          BRANCH_NAME=$(echo $GITHUB_REF | cut -d'/' -f3)
+          echo "$BRANCH_NAME"
+
+          # Create a pull request from the new branch to the base branch (e.g., 'main')
+          # Replace 'main' with your base branch name
+          gh pr create --base main --head $BRANCH_NAME --title "Pull request title for $BRANCH_NAME" --body "new release for $BRANCH_NAME"
+
+
+      - name: Add 'releases' label to the PR
+        if: steps.create-pr.outcome == 'success'
+        run: |
+          PR_NUMBER=$(echo "${{ steps.create-pr.outputs.stdout }}" | awk '{print $4}')
+          gh pr edit $PR_NUMBER --add-label releases
