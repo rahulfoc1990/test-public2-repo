@@ -37,3 +37,10 @@ jobs:
         run: |
           PR_NUMBER=$(echo "${{ steps.create-pr.outputs.stdout }}" | awk '{print $4}')
           gh pr edit $PR_NUMBER --add-label releases
+     
+      - name: Merge PR if condition is met
+        if: github.actor == 'specific_user_login'
+        run: |
+          echo "GitHub Actor: ${{ github.actor }}"
+          PR_NUMBER=$(gh pr list --limit 1 --json number --jq '.[] | .number')
+          gh pr merge $PR_NUMBER --auto
