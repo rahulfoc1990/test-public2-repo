@@ -1,0 +1,48 @@
+name: SemVer Release
+
+on:
+  workflow_dispatch:
+  # push:
+  #  branches:
+  #    - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:    
+      - name: clone the repository
+        uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0  #avoid unrelated history error
+          token: ${{ secrets.SEMVER_GH_TOKEN }} #bypass branch protection rule
+
+      - name: Configure git user
+        #configuring git for runner
+        run: |
+          git config --global user.name "oat-github-bot"
+          git config --global user.email "oat-github-bot@taotesting.com"                 
+
+      - name: Dir for clone tao-release-tool
+        run: |
+          mkdir tao-extension               
+
+      - name: clone release tool repo
+        uses: actions/checkout@v3
+        with: 
+          #repo name needs to be changed after your tests.
+          repository: oat-sa/tao-extension-release   
+          path: tao-extension
+
+      - name: install and run release tool
+        env: 
+          GITHUB_TOKEN: ${{ secrets.SEMVER_GH_TOKEN }}
+        run: |
+          cd tao-extension
+          npm i -g
+          npm i update-notifier 
+          cd ../
+          #create tag and release a new version
+          taoRelease repoRelease --release-branch main --base-branch develop --no-interactive
+
+          #Release branch will be different for each repository, make necessary changes. 
