@@ -50,5 +50,5 @@ jobs:
           echo $PR_NUMBER
           echo $HEAD_BRANCH
 
-          gh pr merge $PR_NUMBER --admin -s #need to enable automerge settings >> general\          
-          gh pr view $PR_NUMBER --json headRepositoryOwner.login,headRepository.name --jq '.headRepositoryOwner.login, .headRepository.name' | xargs -I % gh api -X DELETE repos/%/'$HEAD_BRANCH'
+          gh pr merge $PR_NUMBER --admin -s #need to enable automerge settings >> general         
+          #gh pr view $PR_NUMBER --json headRepositoryOwner.login,headRepository.name --jq '.headRepositoryOwner.login, .headRepository.name' | xargs -I % gh api -X DELETE repos/%/'$HEAD_BRANCH'
