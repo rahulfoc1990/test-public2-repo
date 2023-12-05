@@ -43,4 +43,4 @@ jobs:
         run: |
           echo "GitHub Actor: ${{ github.actor }}"
           PR_NUMBER=$(gh pr list --limit 1 --json number --jq '.[] | .number')
-          gh pr merge $PR_NUMBER --auto -s -d
+          gh pr merge $PR_NUMBER --auto -s 
