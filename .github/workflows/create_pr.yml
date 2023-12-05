@@ -43,7 +43,6 @@ jobs:
         run: |
           echo "GitHub Actor: ${{ github.actor }}"
           PR_NUMBER=$(gh pr list --limit 1 --json number --jq '.[] | .number')
-
           echo $PR_NUMBER
-
           gh pr merge $PR_NUMBER --admin -s #need to enable automerge settings >> general         
+          #added admin flag --admin
