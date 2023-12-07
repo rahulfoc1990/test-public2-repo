@@ -40,17 +40,18 @@ jobs:
 
       - name: remove secret files 
         run: |
-          git rm -r infra
-          git rm -r docker 
-          git rm -r remove.txt
-          git rm -r .github/workflows/push-changes-to-public.yml
+          # git rm -r infra
+          # git rm -r docker 
+          # git rm -r remove.txt
+          # git rm -r .github/workflows/push-changes-to-public.yml
           git add * 
           git commit -m "fix: testing"
 
       - name: push to public repository 
         run: |
           
-          git remote add public git@github.com:oat-sa/test-public1-repo.git
+          #git remote add public git@github.com:oat-sa/test-public1-repo.git
+          git remote add git@github.com:oat-sa/test-public2-repo.git
           git remote -v
           branch_name=$(git branch  | grep '*' | awk '{print $2}')
           git push -u public "$branch_name":"$branch_name"

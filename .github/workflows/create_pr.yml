@@ -29,7 +29,7 @@ jobs:
 
           # Create a pull request from the new branch to the base branch (e.g., 'main')
           # Replace 'main' with your base branch name
-          gh pr create --base release --head $BRANCH_NAME --title "Pull request title for $BRANCH_NAME" --body "new release for $BRANCH_NAME"
+          gh pr create --base main --head $BRANCH_NAME --title "Pull request title for $BRANCH_NAME" --body "new release for $BRANCH_NAME"
 
 
       - name: Add 'releases' label to the PR
