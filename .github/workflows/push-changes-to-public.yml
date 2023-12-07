@@ -38,14 +38,14 @@ jobs:
           git status 
           ls -al 
 
-      - name: remove secret files 
-        run: |
-          # git rm -r infra
-          # git rm -r docker 
-          # git rm -r remove.txt
-          # git rm -r .github/workflows/push-changes-to-public.yml
-          git add * 
-          git commit -m "fix: testing"
+      # - name: remove secret files 
+      #   run: |
+      #     git rm -r infra
+      #     git rm -r docker 
+      #     git rm -r remove.txt
+      #     git rm -r .github/workflows/push-changes-to-public.yml
+      #     git add * 
+      #     git commit -m "fix: testing"
 
       - name: push to public repository 
         run: |
