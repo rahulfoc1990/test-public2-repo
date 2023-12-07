@@ -51,9 +51,9 @@ jobs:
         run: |
           
           #git remote add public git@github.com:oat-sa/test-public1-repo.git
-          git remote add git@github.com:oat-sa/test-public2-repo.git
+          git remote add public2 git@github.com:oat-sa/test-public2-repo.git
           git remote -v
           branch_name=$(git branch  | grep '*' | awk '{print $2}')
-          git push -u public "$branch_name":"$branch_name"
+          git push -u public2 "$branch_name":"$branch_name"
           #git push -u public "$branch_name":release --force
   
