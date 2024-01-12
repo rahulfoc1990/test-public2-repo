@@ -1,0 +1,16 @@
+name: repository dispatch
+on:
+  workflow_dispatch:
+
+
+jobs:
+  send_repository_dispatch: 
+    runs-on: ubuntu-latest     
+    steps:
+        - name: send repository dispatch 
+          uses: peter-evans/repository-dispatch@v2 #this is not reflected
+          with:
+              token: '${{ secrets.MY_TOKEN }}'
+              repository: oat-sa/test-private-repo
+              event-type: pull-changes-from-community
+              client-payload: '{"pr_num": "328", "commit_sha": "b159024f235ba064a8362536605979edc40cb888" }'    
