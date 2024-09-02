@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # - name: Create 'releases' label
       #   run: gh api repos/:owner/:repo/labels --field name=releases --field color=ff0000 --field description="For releases" --method POST
